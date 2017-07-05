@@ -14,6 +14,11 @@ def home():
 @app.route('/last', methods=['GET', 'POST'])
 def last():
 	return requests.get('http://ec2-34-204-7-184.compute-1.amazonaws.com/getlast').content
+
+@app.route('/addone/<string:insert>', methods=['GET', 'POST'])
+def add(insert):
+	r = requests.post('http://ec2-34-204-7-184.compute-1.amazonaws.com/addone', data='Blotso')
+	return r.text
 	
 if __name__ == '__main__':
 	app.run(debug=True)
