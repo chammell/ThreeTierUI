@@ -1,5 +1,5 @@
 import requests
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 
 app = Flask(__name__)
 
@@ -15,9 +15,14 @@ def home():
 def last():
 	return requests.get('http://ec2-34-204-7-184.compute-1.amazonaws.com/getlast').content
 
-@app.route('/addone/<string:insert>', methods=['GET', 'POST'])
-def add(insert):
-	r = requests.post('http://ec2-34-204-7-184.compute-1.amazonaws.com/addone', data='Blotso')
+@app.route('/post', methods=['GET'])
+def show_post():
+	post_id = request.args.get('id')
+	return post_id
+
+@app.route('/addone/<string:insert>')
+def addone(insert):
+	r = requests.post('http://ec2-34-204-7-184.compute-1.amazonaws.com/addone/' + insert)
 	return r.text
 	
 if __name__ == '__main__':
