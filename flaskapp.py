@@ -13,7 +13,7 @@ def home():
 
 @app.route('/last', methods=['GET', 'POST'])
 def last():
-	return requests.get('http://ec2-34-204-7-184.compute-1.amazonaws.com/getlast').content
+	return requests.get('http://myclassicelbpublic-1227522937.us-east-1.elb.amazonaws.com/getlast').content
 
 @app.route('/post', methods=['GET'])
 def show_post():
@@ -22,8 +22,8 @@ def show_post():
 
 @app.route('/addone/<string:insert>')
 def addone(insert):
-	r = requests.post('http://ec2-34-204-7-184.compute-1.amazonaws.com/addone/' + insert)
+	r = requests.post('http://myclassicelbpublic-1227522937.us-east-1.elb.amazonaws.com/addone/' + insert)
 	return r.text
-	
+
 if __name__ == '__main__':
 	app.run(debug=True)
